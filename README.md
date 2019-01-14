@@ -4,7 +4,11 @@
 ```
 npm install
 ```
+###记得安装
+npm install vux --save
 
+###记得安装
+npm install vux-loader --save-dev
 ### Compiles and hot-reloads for development
 ```
 npm run serve
