@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Login from './views/login.vue'
+import echartsDemo from './views/echarts-demo.vue'
+import SalesAmountBill from './views/sales-amount-bill.vue'
 
 Vue.use(Router)
 
@@ -12,12 +14,22 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: Login
     },
     {
       path: '/login',
       name: 'login',
       component: Login
+    },
+    {
+      path: '/echarts-demo',
+      name: 'echartsDemo',
+      component: echartsDemo
+    },
+    {
+      path: '/sales-amount-bill',
+      name: 'SalesAmountBill',
+      component: SalesAmountBill
     }
   ]
 })
