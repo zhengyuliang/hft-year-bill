@@ -24,7 +24,7 @@
             <span class="c-save">记住密码</span>
           </p>
           <p>
-            <x-button class="sumbit-btn">登录</x-button>
+            <x-button class="sumbit-btn" @click.native="login">登录</x-button>
           </p>
         </div>
       </div>
@@ -49,30 +49,35 @@ export default {
       maxclength: 11,
       maxplength: 6
     };
+  },
+  methods: {
+    login() {
+      this.$router.push({ path: "/bill-has-open" });
+    }
   }
 };
 </script>
 
 <style lang="scss" scoped>
 .sales-bg {
-  background-image: url("../assets/login-bg.png");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: 100% 100%;
-  width: 100%;
-  bottom: 0;
+  position: fixed;
   top: 0;
-  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("../assets/login-bg.png");
 }
 
 .use-bg {
   background-image: url("../assets/user-bg.png");
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: 100% 100%;
+  background-size: contain;
   width: 20vw;
   height: 20vw;
-  margin:1vw auto;
+  margin: 1vw auto;
 }
 
 .form-bg {
@@ -89,7 +94,7 @@ export default {
   position: fixed;
   left: 50%;
   margin-left: -44%;
-  top: 22vh;
+  top: 24vh;
 }
 
 .form-i {
@@ -114,7 +119,7 @@ export default {
   background-image: url("../assets/w-bg.png");
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: 100% 100%;
+  background-size: contain;
 }
 
 .icon-phone {
@@ -123,7 +128,7 @@ export default {
   background-image: url("../assets/p-bg.png");
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: 100% 100%;
+  background-size: contain;
 }
 
 .forget-p {
