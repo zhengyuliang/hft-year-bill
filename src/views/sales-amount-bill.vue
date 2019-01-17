@@ -12,4 +12,4 @@
   background: url('../assets/bill-c-l.png') no-repeat left top;
   background-size: 100% 100%;
 }
-</style>
+</style> 
