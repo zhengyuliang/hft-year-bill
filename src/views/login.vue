@@ -33,7 +33,18 @@
   </div>
 </template>
 <script>
-import { ViewBox, XInput, Flexbox, XButton, FlexboxItem } from "vux";
+import {
+  ViewBox,
+  XInput,
+  Flexbox,
+  XButton,
+  FlexboxItem,
+  AlertPlugin,
+  LoadingPlugin
+} from "vux";
+
+Vue.use(AlertPlugin);
+Vue.use(LoadingPlugin);
 export default {
   components: {
     ViewBox,
@@ -52,7 +63,38 @@ export default {
   },
   methods: {
     login() {
-      this.$router.push({ path: "/bill-has-open" });
+      // this.$router.push({ path: "/bill-has-open" });
+      if (!this.password.trim()) {
+        this.showMassage("密码不能为空");
+        return;
+      }
+      if (this.checkphone()) {
+        return fasle;
+      }
+    },
+    // 验证手机号
+    checkphone() {
+      var str = "";
+      var phone = this.phone + "";
+      if (phone.trim() == "") {
+        str = "手机号码不能为空";
+      } else if (phone.length != 11) {
+        str = "手机号字符长度必须是11位";
+      } else if (!/^1[34578]\d{9}$/.test(phone)) {
+        str = "手机号字符格式不正确";
+      }
+      if (str) {
+        this.showMassage(str);
+        return false;
+      } else {
+        return true;
+      }
+    },
+    //showMassage弹框提示
+    showMassage(tips) {
+      this.$vux.alert.show({
+        title: tips
+      });
     }
   }
 };
@@ -85,7 +127,7 @@ export default {
   width: 100%;
   box-sizing: border-box;
   padding: 5vw;
-  font-size: 1rem;
+  font-size: 0.8rem;
   background: #fff;
 }
 
@@ -155,7 +197,7 @@ export default {
   background: linear-gradient(to right, rgb(22, 221, 219), rgb(49, 176, 224));
   border-radius: 5px;
   color: #fff;
-  font-size: 1.2rem;
+  font-size: 1rem;
   line-height: 12vw;
   box-shadow: 4px 4px 10px rgba(22, 221, 219, 0.3);
 }
@@ -173,7 +215,7 @@ export default {
   width: 100%;
   color: rgb(255, 255, 255);
   text-align: center;
-  font-size: 1rem;
+  font-size: 0.8rem;
   position: absolute;
   bottom: 10vw;
 }
