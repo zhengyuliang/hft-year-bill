@@ -6,5 +6,12 @@ module.exports = {
             plugins: ['vux-ui']
         })
     },
-    devServer: {}
+    devServer: {
+        proxy: {
+            '/caoyu': {
+                target: 'https://a95oyxv7s6.execute-api.cn-northwest-1.amazonaws.com.cn',
+                pathRewrite: {'^/caoyu' : ''}
+            },
+        }
+    }
 }
