@@ -6,6 +6,7 @@ import echartsDemo from './views/echarts-demo.vue'
 import BillHasOpen from './views/bill-has-open.vue'
 import SalesAmountBill from './views/sales-amount-bill.vue'
 import DataList from './views/dataList.vue'
+import Download from './views/download.vue'
 
 Vue.use(Router)
 
@@ -43,6 +44,11 @@ export default new Router({
       path: '/dataList',
       name: 'DataList',
       component: DataList
+    },
+    {
+      path: '/download',
+      name: 'Download',
+      component: Download
     }
   ]
 })

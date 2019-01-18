@@ -13,6 +13,9 @@
     } from 'vux'
 export default {
   name: "hello",
+  components:{
+    XHeader
+  },
   data() {
     return {
       msg: "Welcome to Your Vue.js App"

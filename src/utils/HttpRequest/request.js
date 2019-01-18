@@ -28,12 +28,12 @@ let request = (options) => {
     //default options, mixin options
     let opt = {
         method: 'post',
-        isTimeOut: false,
-        config: {
-            headers: {
-                'x-api-key':'XpF1tKUX0CatqWK6uH9UU1CkZ1TNUwnN5USWT1ka'
-            }
-        },
+        // isTimeOut: false,
+        // config: {
+        //     headers: {
+        //         'x-api-key':'XpF1tKUX0CatqWK6uH9UU1CkZ1TNUwnN5USWT1ka'
+        //     }
+        // },
         ...options
     }
     // if (opt['urlParameter']) opt.url = opt.url.replace(/\{\w*\}/, opt.urlParameter);
@@ -42,15 +42,14 @@ let request = (options) => {
         //拼接参数
         opt['url'] = opt['url'] + encodeSearchParams(options['params']);
         opt.params = {
-            ...opt.params,
-            ...opt.config
+            ...opt.params
+            // ...opt.config
         };
     }
     // 超时处理
     let p1 = axios[opt.method](
         process.env.VUE_APP_HOST + opt['url'],
-        opt['params'],
-        opt['config'])
+        opt['params'])
     let p_timeout = new Promise((resolve, reject) => {
         // if (!opt['isTimeOut']) { //如果是导入和复制门店请求就不要超时处理
         setTimeout(() => {
