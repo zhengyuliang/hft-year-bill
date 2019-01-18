@@ -1,12 +1,20 @@
 <template>
   <div class="wrap">
+    <toast
+      v-model="showPositionValue"
+      type="text"
+      :time="1200"
+      is-show-mask
+      :text="ToastMassage"
+      :position="position"
+    ></toast>
     <div class="sales-bg">
       <view-box class="use-bg"></view-box>
       <view-box class="has-o-bg"></view-box>
       <group class="selected-s" label-width="5.5em" label-margin-right="2em" label-align="justify">
-        <selector placeholder="请选择对应门店" :options="['wu','工艺技术', '其他']" v-model="shop"></selector>
+        <selector placeholder="请选择对应门店" @on-change="changeValue" :options="shopList" v-model="shop"></selector>
       </group>
-      <div class="open-btn">打开私人账单</div>
+      <x-button class="sumbit-btn" @click.native="openBill">打开私人账单</x-button>
     </div>
   </div>
 </template>
@@ -19,7 +27,8 @@ import {
   FlexboxItem,
   Selector,
   Group,
-  GroupTitle
+  GroupTitle,
+  Toast
 } from "vux";
 export default {
   components: {
@@ -30,12 +39,40 @@ export default {
     XButton,
     Selector,
     Group,
-    GroupTitle
+    GroupTitle,
+    Toast
   },
   data() {
     return {
-      shop: ""
+      shop: "",
+      shopList: [],
+      showPositionValue: false,
+      ToastMassage: "",
+      position: "middle"
     };
+  },
+  methods: {
+    changeValue(value) {
+      this.shop = value;
+      console.log(this.shop);
+    },
+    openBill() {
+      if (!this.shop) {
+        this.showPositionValue = true;
+        this.ToastMassage = "请选择对应门店";
+      } else {
+        this.$router.push({ path: "/dataList", query: { shop_id: this.shop } });
+      }
+    }
+  },
+  mounted() {
+    var shopList = JSON.parse(sessionStorage.getItem("USERINFO"));
+    for (var i = 0; i < shopList.length; i++) {
+      this.shopList.push({
+        key: shopList[i].shop_id,
+        value: shopList[i].shop_name
+      });
+    }
   }
 };
 </script>
@@ -98,5 +135,23 @@ export default {
   left: 50%;
   margin-left: -35%;
   color: #fff;
+}
+.sumbit-btn {
+  display: block;
+  width: 40vw;
+  height: 12vw;
+  background: linear-gradient(to right, #1ba2e8, #36eae8);
+  border-radius: 5px;
+  color: #fff;
+  font-size: 1rem;
+  line-height: 12vw;
+  box-shadow: 4px 4px 10px rgba(22, 221, 219, 0.3);
+  position: absolute;
+  bottom: 20vw;
+  left: 50%;
+  margin-left: -20vw;
+}
+.weui-btn:after {
+  border: 0;
 }
 </style>

@@ -10,21 +10,20 @@ import Download from './views/download.vue'
 
 Vue.use(Router)
 
-export default new Router({
+let router = new Router({
   // mode: 'history',
   base: process.env.BASE_URL,
-  routes: [
-    {
+  routes: [{
       path: '/',
-      name: 'home',
+      name: 'Home',
       component: Home
     },
     {
       path: '/login',
-      name: 'login',
+      name: 'Login',
       component: Login
     },
-    
+
     {
       path: '/bill-has-open',
       name: 'BillHasOpen',
@@ -51,4 +50,17 @@ export default new Router({
       component: Download
     }
   ]
-})
+});
+// 全局路由守卫
+router.beforeEach((to, from, next) => {
+  var info = sessionStorage.getItem("USERINFO")
+  if (!info && to['name'] !== 'Home' && to['name'] !== 'Login') {
+    next({
+      name: 'Home'
+    })
+  } else {
+    next();
+  }
+});
+
+export default router;

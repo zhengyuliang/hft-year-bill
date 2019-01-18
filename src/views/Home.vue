@@ -17,6 +17,8 @@ export default {
     openBill() {
       this.$router.push({ path: "/login" });
     }
+  },
+  mounted(){
   }
 };
 </script>
@@ -88,7 +90,7 @@ export default {
     display: block;
     left: 25%;
     bottom: 70px;
-    z-index: 7;
+    z-index: 100;
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;

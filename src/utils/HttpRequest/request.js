@@ -3,6 +3,7 @@ import axios from 'axios';
 // import sessionManagement from '../SessionManagement'
 
 const CAOYU = 'caoyu';
+const LIUYI = 'liuyi';
 // const XIAOCONG = 'xiaocong';
 // 超时时间 单位: ms
 const timeoutCounter = 100000;
@@ -10,6 +11,8 @@ const timeoutCounter = 100000;
 // 开发人员在这里输入开发人员和API地址，如果有开发人员，请在vue.config.js里配置新的代理
 const Modules = {
     DATA: CAOYU + '/proc/report/year-report/2018', //账单数据信息
+    LOGIN: LIUYI + '/v1/operation/h5/login',//登录
+    SCODE: LIUYI + '/v1/operation/h5/sendsms'//验证码
 }
 /**
  * method: 'get' or 'post' , 'post'是默认值
@@ -31,7 +34,7 @@ let request = (options) => {
         // isTimeOut: false,
         // config: {
         //     headers: {
-        //         'x-api-key':'XpF1tKUX0CatqWK6uH9UU1CkZ1TNUwnN5USWT1ka'
+        //         'x-api-key': 'XpF1tKUX0CatqWK6uH9UU1CkZ1TNUwnN5USWT1ka'
         //     }
         // },
         ...options
@@ -42,7 +45,8 @@ let request = (options) => {
         //拼接参数
         opt['url'] = opt['url'] + encodeSearchParams(options['params']);
         opt.params = {
-            ...opt.params
+
+            ...opt.params,
             // ...opt.config
         };
     }
@@ -50,6 +54,7 @@ let request = (options) => {
     let p1 = axios[opt.method](
         process.env.VUE_APP_HOST + opt['url'],
         opt['params'])
+        // opt['config'])
     let p_timeout = new Promise((resolve, reject) => {
         // if (!opt['isTimeOut']) { //如果是导入和复制门店请求就不要超时处理
         setTimeout(() => {
