@@ -12,6 +12,10 @@ module.exports = {
                 target: 'https://a95oyxv7s6.execute-api.cn-northwest-1.amazonaws.com.cn',
                 pathRewrite: {'^/caoyu' : ''}
             },
+            '/liuyi':{
+                target: 'http://40.125.170.251:5006',
+                pathRewrite: {'^/liuyi' : ''}
+            }
         }
     }
 }
