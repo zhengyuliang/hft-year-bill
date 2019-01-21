@@ -127,6 +127,8 @@ export default {
             this.showPositionValue = true;
             this.ToastMassage = "验证码已发送到手机";
           } else {
+            this.canClick = true;
+            this.content = "获取验证码";
             this.showPositionValue = true;
             this.ToastMassage = "发送失败，请重试";
           }
@@ -136,7 +138,7 @@ export default {
           this.ToastMassage = "发送失败，请重试";
           window.clearInterval(this.clock);
           this.content = "获取验证码";
-          this.canClicks = true;
+          this.canClick = true;
         });
     },
     login() {
