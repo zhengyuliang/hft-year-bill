@@ -337,7 +337,7 @@ export default {
     color: rgb(255, 255, 255);
     text-align: center;
     font-size: 1rem;
-    position: absolute;
+    position: fixed;
     bottom: 10vw;
   }
 }
