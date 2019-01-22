@@ -12,27 +12,27 @@
       <div class="form-bg-l">
         <view-box class="use-bg"></view-box>
         <div class="form-bg">
-          <flexbox class="item-i">
-            <flexbox-item class="form-i">
-              <x-input class="phone-i" placeholder="请输入手机号码" v-model="phone" :max="maxclength"></x-input>
+          <div class="item-i">
+            <div class="form-i">
+              <input class="phone-i" placeholder="请输入手机号码" v-model="phone" :max="maxclength"></input>
               <p class="icon-phone"></p>
-            </flexbox-item>
-          </flexbox>
-          <flexbox class="item-i">
-            <flexbox-item class="form-i form-code">
+            </div>
+          </div>
+          <div class="item-i">
+            <div class="form-i form-code">
               <x-input class="phone-i" placeholder="请输入手机验证码" v-model="password" :max="maxplength"></x-input>
               <!-- <p class="icon-pass"></p> -->
-            </flexbox-item>
-            <flexbox-item
+            </div>
+            <div
               class="form-i form-i-n"
               :class="canClick === true? '': 'send-color'"
-              @click.native="sendCode"
+              @click="sendCode"
             >
               <!-- <x-input class="phone-i" placeholder="请输入登入密码" v-model="password" :max="maxplength"></x-input>
               <p class="icon-pass"></p>-->
               {{content}}
-            </flexbox-item>
-          </flexbox>
+            </div>
+          </div>
           <!-- <div class="forget-p">忘记密码？</div> -->
         </div>
         <div class="login-s">
@@ -235,14 +235,17 @@ export default {
     padding: 5vw;
     font-size: 0.8rem;
     background: #fff;
+    margin-top: 30px;
   }
 
   .form-bg-l {
+    // margin: 60vw auto;
     width: 88%;
-    position: fixed;
+    position: absolute;
     left: 50%;
     margin-left: -44%;
-    top: 24vh;
+    top: 12vh;
+    z-index: 100;
   }
 
   .form-i {
@@ -270,10 +273,13 @@ export default {
   .phone-i {
     width: 90%;
     font-size: 0.8rem;
+    padding: 10px;
+    border: 0;
   }
 
   .item-i {
     margin-bottom: 6vw;
+    display: flex;
   }
 
   .icon-pass {
@@ -338,7 +344,7 @@ export default {
     text-align: center;
     font-size: 1rem;
     position: fixed;
-    bottom: 10vw;
+    bottom: 20px;
   }
 }
 </style>
