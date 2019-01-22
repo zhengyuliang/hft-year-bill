@@ -157,6 +157,7 @@ export default {
       request({
         url: Modules.LOGIN,
         params: param,
+        config:{},
         method: "post"
       })
         .then(res => {

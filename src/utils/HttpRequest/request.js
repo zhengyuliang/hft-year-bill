@@ -45,6 +45,7 @@ let request = (options) => {
         //拼接参数
         opt['url'] = opt['url'] + encodeSearchParams(options['params']);
         opt.params = {
+
             ...opt.params,
             // ...opt.config
         };
@@ -52,8 +53,8 @@ let request = (options) => {
     // 超时处理
     let p1 = axios[opt.method](
         process.env.VUE_APP_HOST + opt['url'],
-        opt['params'])
-        // opt['config'])
+        opt['params'],
+        opt['config'])
     let p_timeout = new Promise((resolve, reject) => {
         // if (!opt['isTimeOut']) { //如果是导入和复制门店请求就不要超时处理
         setTimeout(() => {
