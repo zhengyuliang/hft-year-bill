@@ -1,11 +1,25 @@
 <template>
     <div class="download">
-        <img src="../assets/bg_down_1.jpg" alt="" class="img">
-        <button class="btn"></button>
+        <img :src="imgData" alt="" class="img">
+        <!-- <a class="btn" :href="imgData" download="jpg"></a> -->
     </div>
 </template>
 <script>
 export default {
+    data(){
+        return {
+            imgData:'',
+            imgList:['https://s3.cn-north-1.amazonaws.com.cn/hunanyancao-advertisements/wxapp-searchprice/bg_down_1.jpg','https://s3.cn-north-1.amazonaws.com.cn/hunanyancao-advertisements/wxapp-searchprice/bg_down_2.jpg','https://s3.cn-north-1.amazonaws.com.cn/hunanyancao-advertisements/wxapp-searchprice/bg_down_3.jpg','https://s3.cn-north-1.amazonaws.com.cn/hunanyancao-advertisements/wxapp-searchprice/bg_down_4.jpg'],
+        }
+    },
+    methods:{
+
+    },
+    mounted(){
+        let index = Math.floor(Math.random() * 4);
+        console.log(index);
+        this.imgData = this.imgList[index];
+    }
     
 }
 </script>

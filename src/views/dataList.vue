@@ -181,7 +181,13 @@ export default {
           console.log(data);
           // 绘制图表
           myChart.setOption({
-            title: { text: "订单交易金额平均分布区间" },
+            title: { 
+              text: "订单交易金额平均分布区间",
+              textStyle:{
+                color:"#666",
+                fontSize:16
+              }
+            },
             tooltip: {},
             xAxis: {
               data: ["第一季度", "第二季度", "第三季度", "第四季度"],
@@ -537,12 +543,12 @@ export default {
       height: 100vh;
       box-sizing: border-box;
       .inner{
-        height: 40vh;
+        height: 47vh;
         box-sizing: border-box;
         padding: 1rem .5rem;
       }
       .footer{
-        height: 57vh;
+        height: 50vh;
         box-sizing: border-box;
         padding: 1rem .5rem;
         position: relative;
@@ -695,6 +701,7 @@ export default {
       z-index: 2;
       display: block;
       margin-left: -.75rem;
+      animation: bounce-In 1s ease infinite alternate;
       &.arrow-1{
         background-image: url("../assets/icon_inner_7.png");
       }
@@ -788,6 +795,41 @@ export default {
       }
 
     }
-    
+  }
+@-moz-keyframes bounce-In {
+    0% {
+      opacity: .5;
+    -webkit-transform: translateY(-.5rem);
+            transform: translateY(-.5rem);
+    }
+    100% {
+      opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    }
+  }
+@-o-keyframes bounce-In {
+    0% {
+      opacity: .5;
+    -webkit-transform: translateY(-.5rem);
+            transform: translateY(-.5rem);
+    }
+    100% {
+      opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    }
+  }
+@keyframes bounce-In {
+    0% {
+      opacity: .5;
+    -webkit-transform: translateY(-.5rem);
+            transform: translateY(-.5rem);
+    }
+    100% {
+      opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    }
   }
 </style> 
