@@ -5,19 +5,19 @@
         <div class="swiper-slide bg-1">
           <div class="top"></div>
           <div class="inner">
-            <h4>XXXXXXXX店铺</h4>
+            <h4>{{dataList.store_name}}</h4>
             <div class="title"></div>
             <div class="sub-title"></div>
             <div class="line"></div>
             <div class="all">
               <p class="p-text">年度总营业额</p>
-              <h2>19,000,000 <span>元</span></h2>
+              <h2>{{total_payment}} <span>元</span></h2>
             </div>
             <div class="all">
-              <p class="ptext">交易订单平均金额：<span class="text-red">23.6</span>元</p>
+              <p class="ptext">交易订单平均金额：<span class="text-red">{{dataList.per_received}}</span>元</p>
             </div>
             <div class="all-text">
-              2018年我的xxx店铺平均每单能收款xxx元，开店总收款xxxxx元，战胜了xx市xx%的人，钱赚的盆满钵满
+              2018年,{{dataList.store_name}}平均每单能收款{{dataList.per_received}}元，总收款{{dataList.total_payment}}元，战胜了{{dataList.city}}市{{defeat}}%的人，钱赚的盆满钵满
             </div>
             <div class="line"></div>
             <div class="all-info">
@@ -33,13 +33,13 @@
         <div class="swiper-slide bg-2">
           <div class="topp">
             <div class="all">
-                <p class="p-text">我的店铺年度总润达到</p>
-                <h2 class="text-red">5,000 <span>元</span></h2>
+                <p class="p-text">我的店铺年度订单量</p>
+                <h2 class="text-red">{{dataList.total_order}} <span>单</span></h2>
               </div>
-              <div class="all">
+              <!-- <div class="all">
                 <p class="p-text p-right">年度总营业额</p>
-                <h2 class="h-num">19,000,000 <span>元</span></h2>
-              </div>
+                <h2 class="h-num">{{total_payment}}<span>元</span></h2>
+              </div> -->
               <div class="info">
                 <h3>经营小Tips:</h3>
                 <p>维护店内商品的进售价报表分析会更准确哦！</p>
@@ -48,12 +48,12 @@
               <p class="all-info">不积跬步，无以至千里；不积小流，无以成江海.</p>
           </div>
           <div class="footer">
-            <div class="chart"></div>
+            <div class="chart" id="myChart"></div>
             <div class="bg-text">
-              <div class="tixt">店铺今年最大订单xxxx，发生在xxxx年xx月xx日</div>
+              <div class="tixt">店铺最大订单发生<p>{{max_order_time}}</p></div>
               <div class="price">
                 <h3>最大订单交易金额：</h3>
-                <h2>1,000 <span>元</span></h2>
+                <h2>{{max_order}} <span>元</span></h2>
               </div>
             </div>
             
@@ -63,20 +63,37 @@
         <div class="swiper-slide bg-3">
           <div class="top"></div>
           <div class="inner">
-            <div class="chart3"></div>
+            <div class="chart3">
+              <h3>支付类型占比</h3>
+              <div class="chart3-inner">
+                <div class="chartPie" id="pie"></div>
+                <div class="chartBox">
+                  <p><span class="color-1"></span>{{wechat_rate}}%</p>
+                  <p><span class="color-2"></span>{{cash_rate}}%</p>
+                  <p><span class="color-3"></span>{{alipay_rate}}%</p>
+                </div>
+                <div class="chartext">
+                  在您的店铺消费顾客，现金支付的方式达到{{dataList.cash}}元
+                </div>
+              </div>
+            </div>
             <div class="info">
               <h3>经营小Tips:</h3>
-              <p>申请开通随行付只需支付<span>2.2</span>费率，长沙地区申请开通建行随行付0费率。可为您节省<span>2.2</span>元。</p>
+              <!-- <p>申请开通随行付只需支付<span>2.2</span>费率，长沙地区申请开通建行随行付0费率。可为您节省<span>2.2</span>元。</p> -->
+              <p>惠付通提供随行付、建行龙支付(仅限长沙地区)等第三方支付，费率优惠，更有收银奖励活动参与！</p>
             </div>
             <div class="line"></div>
           </div>
           
           <div class="footer">
             <div class="list">
-              <div class="box"></div>
+              <div class="box">
+                <img src="../assets/icon_inner_15.png" alt="">
+                <p>年度总额：{{total_payment}}</p>
+              </div>
               <div class="bg-text">
-                <p>销售量最多的商品:xxxxxxxxxx；</p>
-                <p>销售额最高的商品：xxxxxxxxxxxx；</p>
+                <p>销售量最多的商品:<span>{{dataList.goods_count_name}}</span></p>
+                <p>销售额最高的商品：<span>{{dataList.goods_amount_name}}</span></p>
                 <p>2019年要把握时代的脉搏，再创辉煌～！</p>
               </div>
             </div>
@@ -91,7 +108,7 @@
         </div>
         <div class="swiper-slide bg-4">
           <div class="bg-top"></div>
-          <p>您最早<span class="bg-blue">06</span>点<span class="bg-blue">06</span>分开始收银，最晚到<span class="bg-red">06</span>点<span class="bg-red">06</span>分还在工作，真是起的比鸡还早，睡的比狗还晚，勤奋的你，一定可以实现2019年的小愿望！</p>
+          <p>您最早<span class="bg-blue">{{dataList.first_deal_time}}</span>开始收银，最晚到<span class="bg-red">{{dataList.late_deal_time}}</span>还在工作，真是起的比鸡还早，睡的比狗还晚，勤奋的你，一定可以实现2019年的小愿望！</p>
           <button class="btn"></button>
         </div>
       </div>
@@ -103,31 +120,162 @@
 import Swiper from 'swiper';
 import {request,Modules} from '../utils/HttpRequest/request';
 import 'swiper/dist/css/swiper.min.css';
+import numeral from 'numeral';
+import moment from 'moment';
+
 export default {
     data () {
         return {
-            dataList:[]
+            dataList:'',
+            total_payment:'', //总收款
+            defeat:0, //战胜百分比
+            max_order:'', //最大订单
+            max_order_time:'', //最大订单发生于的时间 
+            alipay_rate:'',//支付客户百分比
+            cash_rate:'',// 现金支付百分比
+            wechat_rate:'' //微信支付百分比
         }
     },
     methods: {
         getData () {
+          let stringjson = "store_name,total_payment,total_payment_Q1,total_payment_Q2,total_payment_Q3,total_payment_Q4,per_received,max_order,max_order_date,alipay,cash,wechat,alipay_rate,cash_rate,wechat_rate,late_deal_time,first_deal_time,profit,sale_rank,defeat,goods_count_barcode,goods_count_name,goods_amount_barcode,goods_amount_name,city,district,total_order";
           let params={
             "query_type": "get_year_report_by_storeid",
-            "store_id": 2,
-            "projection_expression": "store_id,total_payment,max_order,store_name,user_id"
+            "store_id": 121,
+            "projection_expression": stringjson
           };
           request({
             method:'post',
             params:params,
             url: Modules.DATA,
-            headers: {
-                'x-api-key':'XpF1tKUX0CatqWK6uH9UU1CkZ1TNUwnN5USWT1ka'
+            config:{
+              headers: {
+                  'x-api-key':'XpF1tKUX0CatqWK6uH9UU1CkZ1TNUwnN5USWT1ka'
+              }
             }
           }).then(res =>{
             console.log(res);
+            let data = JSON.parse(res.data);
+            this.dataList = data[0];
+            let dataNume = data[0];
+            console.log(data);
+            let number = numeral(dataNume.total_payment).format('0,0');
+            this.total_payment = number;
+            this.max_order = numeral(dataNume.max_order).format('0,0');
+            this.max_order_time = moment(dataNume.max_order_date).format("YYYY年MM月DD日");
+            this.defeat = this.getPercent(dataNume.defeat);
+            this.alipay_rate = this.getPercent(dataNume.alipay_rate);
+            this.cash_rate = this.getPercent(dataNume.cash_rate);
+            this.wechat_rate = this.getPercent(dataNume.wechat_rate);
+            this.drawLine();
+            this.drawPie();
           }).catch(err => {
             console.log(err);
           })
+        },
+        drawLine() {
+          // 基于准备好的dom，初始化echarts实例
+          let myChart = this.$echarts.init(document.getElementById("myChart"));
+          let data = [+this.dataList.total_payment_Q1,+this.dataList.total_payment_Q2,+this.dataList.total_payment_Q3,+this.dataList.total_payment_Q4];
+          console.log(data);
+          // 绘制图表
+          myChart.setOption({
+            title: { text: "订单交易金额平均分布区间" },
+            tooltip: {},
+            xAxis: {
+              data: ["第一季度", "第二季度", "第三季度", "第四季度"],
+              axisLabel:{
+                textStyle: {
+                    color: '#a3abb4'
+                }
+              }
+            },
+            yAxis: {},
+            grid:{
+              left: '15%',   //距离左边的距离
+              right: '8%', //距离右边的距离
+              bottom: '15%',//距离下边的距离
+              top: '20%' //距离上边的距离
+            },
+            series: [
+              {
+                name: "总销量",
+                type: "bar",
+                itemStyle:{
+                  color:'#448df6',
+                  barBorderRadius:[5,5,0,0]
+                },
+                barWidth:40,
+                data: data
+              }
+            ]
+          });
+        },
+        // 饼图数据内容
+        drawPie(){
+            let pie = this.$echarts.init(document.getElementById("pie"));
+            let cash = +this.dataList.cash;
+            let wechat = +this.dataList.wechat;
+            let alipay = +this.dataList.alipay;
+            let data = [
+                  {value:wechat, name:'微信'},
+                  {value:cash, name:'现金'},
+                  {value:alipay, name:'支付宝'}
+              ];
+            pie.setOption({
+              title: { text: "" },
+              tooltip: {},
+              series: [
+                {
+                  // name: "访问来源",
+                  type:'pie',
+                  radius: ['40%', '70%'],
+                  avoidLabelOverlap: false,
+                  label: {
+                      normal: {
+                          show: false,
+                          position: 'center'
+                      },
+                      emphasis: {
+                          show: true,
+                          textStyle: {
+                              fontSize: '12',
+                              fontWeight: 'bold'
+                          }
+                      }
+                  },
+                  labelLine: {
+                      normal: {
+                          show: true
+                      }
+                  },
+                  data:data,
+                  color:['#a9d86e','#75b1ff','#f8a20f'],
+                  itemStyle: {
+                   normal:{
+                      label:{
+                        show:true,
+                        formatter: '{b} : {c} \n ({d}%)'
+                      },
+                      labelLine:{
+                        show:true
+                      }
+                    },
+                   emphasis: {
+                       shadowBlur: 10,
+                       shadowOffsetX: 0,
+                       shadowColor: 'rgba(0, 0, 0, 0.5)'
+                   }
+                 }
+                }
+              ]
+          });
+        },
+        // 转化百分比
+        getPercent(str){
+          let percent = +str;
+          let result = (percent * 100).toFixed(2);
+          return result;
         }
     },
     mounted(){
@@ -156,7 +304,7 @@ export default {
       .inner{
         box-sizing: border-box;
         height: 67vh;
-        padding: 1rem;
+        padding: 1rem .5rem;
         h4{
           font-size: .65rem;
         }
@@ -182,7 +330,7 @@ export default {
         
         .all{
           border-bottom: 1px dashed #6c6c6c;
-          padding: .5rem 0;
+          padding: .5rem 0 .2rem;
           h2{
             color: #0f95cd;
             font-size: 2rem;
@@ -225,6 +373,7 @@ export default {
         background-position: center bottom;
         background-repeat: no-repeat;
         background-size: contain;
+        padding-left: .5rem;
         &::before{
           content: "";
           width: 100%;
@@ -240,30 +389,28 @@ export default {
         h3{
           text-align: left;
           position: relative;
-          width: 100%;
-          width: 80%;
           margin: 0 auto;
           padding-top: .5rem;
-          padding-left: 3.2rem;
-          font-size: .8rem;
+          padding-left: 1.5rem;
+          font-size: .75rem;
           &::before{
             content: "";
-            width: 2.5rem;
-            height: 1.5rem;
+            width: 1.5rem;
+            height: 1rem;
             background-size: contain;
             background-position: center;
             background-image: url("../assets/icon_inner_3.png");
             background-repeat: no-repeat;
             position: absolute;
             top: .5rem;
-            left: .75rem;
+            left: 0;
           }
         }
         p{
           font-size: .6rem;
-          padding: .25rem 1.5rem .25rem 4rem;
+          padding: .25rem .5rem .25rem 1.5rem;
           text-align: left;
-          text-indent: 1rem;
+          // text-indent: 1rem;
         }
        
       }
@@ -273,9 +420,9 @@ export default {
       box-sizing: border-box;
       .topp{
         background-color: #fff;
-        height: 47vh;
+        height: 37vh;
         box-sizing: border-box;
-        padding: 0 1rem;
+        padding: 0 .5rem;
         padding-bottom: .5rem;
         position: relative;
         &::after{
@@ -306,7 +453,7 @@ export default {
             display: block;
             color: #e17bb0;
             font-size: 2rem;
-            text-align: left;
+            text-align: center;
             padding-left: 1rem;
             font-weight: 500;
             span{
@@ -328,20 +475,21 @@ export default {
         }
       }
       .footer{
-        padding: 1rem;
-        height: 53vh;
+        padding: 1rem .5rem;
+        height: 63vh;
         box-sizing: border-box;
         .bg-text{
           display: flex;
           justify-content: space-between;
           align-items: flex-start;
-          margin-top: 1rem;
+          margin-top: .5rem;
         }
         .chart{
-          width: 96%;
+          width: 100%;
           background-color: #fff;
           margin: 0 auto;
-          height: 30vh;
+          height: 38vh;
+          border-left: 2px solid #76b1fe;
         }
         .tixt{
           font-size: .7rem;
@@ -362,8 +510,10 @@ export default {
           }
           h2{
             color: #ea7933;
-            font-size: 2.2rem;
+            font-size: 1.6rem;
             font-weight: 500;
+            display: flex;
+            align-items: flex-end;
           }
           span{
             font-size: .8rem;
@@ -380,17 +530,17 @@ export default {
       .inner{
         height: 40vh;
         box-sizing: border-box;
-        padding: 1rem;
+        padding: 1rem .5rem;
       }
       .footer{
         height: 57vh;
         box-sizing: border-box;
-        padding: 1rem;
+        padding: 1rem .5rem;
         position: relative;
         background-color: #fff;
         background-size: 60%;
         background-position: 73% 74%;
-        background-image: url("../assets/icon_inner_9.png");
+        // background-image: url("../assets/icon_inner_9.png");
         background-repeat: no-repeat;
         position: absolute;
         &::before{
@@ -414,14 +564,28 @@ export default {
           .box{
             background-color: #fff;
             border: 1px solid #ececec;
-            height: 15vh;
-            width: 6rem;
+            // height: 15vh;
+            width: 8rem;
+            img{
+              width: 90%;
+              margin: .5rem 0;
+            }
+            p{
+              font-size: .6rem;
+              color: #666;
+              padding: 0 .2rem .5rem .2rem;
+            }
           }
           .bg-text{
             display: block;
             flex: 1;
             text-align: left;
             padding-left: .5rem;
+            font-size: .65rem;
+            span{
+              display: block;
+              color: #999;
+            }
           }
         }
       }
@@ -532,39 +696,88 @@ export default {
       h3{
         text-align: left;
         position: relative;
-        width: 100%;
-        width: 80%;
         margin: 0 auto;
-        // padding-top: 10px;
-        padding-left: 3.5rem;
-        font-size: .8rem;
+        padding-left: 1.5rem;
+        font-size: .75rem;
         &::before{
           content: "";
-          width: 2.5rem;
-          height: 1.5rem;
+          width: 1.5rem;
+          height: 1.0rem;
           background-size: contain;
           background-position: center;
           background-image: url("../assets/icon_inner_3.png");
           background-repeat: no-repeat;
           position: absolute;
-          top: 0px;
-          left: .75rem;
+          top: .1rem;
+          left: 0;
         }
       }
       p{
         font-size: .6rem;
         box-sizing: border-box;
-        padding: .25rem 0 .25rem 2.5rem;
+        padding: .25rem 0 .25rem 1.5rem;
         text-align: left;
-        text-indent: 1rem;
+        // text-indent: 1rem;
       }
     }
     .chart3{
       background-color: #fff;
-      width: 90%;
-      height: 20vh;
+      // width: 100%;
+      // height: 20vh;
       margin: 0 auto;
       border: 1px solid #ececec;
+      box-sizing: border-box;
+      h3{
+        font-size: .7rem;
+        text-align: left;
+        color: #666;
+        border: 1px solid #ececec;
+        padding: .25rem .5rem;
+        width: 100%;
+      }
+      .chart3-inner{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 20vh;
+      }
+      .chartPie{
+        flex: 2;
+        height: 100%;
+      }
+      .chartBox{
+        flex: 1;
+        font-size: .7rem;
+        text-align: left;
+        p{
+          display: flex;
+          align-items: center;
+          font-size: .6rem;
+          padding: .25rem 0;
+        }
+        span{
+          width: 1.2rem;
+          height: .6rem;
+          display: inline-block;
+          margin-right: .2rem;
+        }
+        .color-1{
+          background-color: #a9d86e;
+        }
+        .color-2{
+          background-color: #75b1ff;
+        }
+        .color-3{
+          background-color: #f8a20f;
+        }
+      }
+      .chartext{
+        flex: 2;
+        font-size: .7rem;
+        text-align: left;
+        padding-left: .5rem;
+      }
+
     }
     
   }

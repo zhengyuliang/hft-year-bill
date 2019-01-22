@@ -52,15 +52,15 @@ let router = new Router({
   ]
 });
 // 全局路由守卫
-router.beforeEach((to, from, next) => {
-  var info = sessionStorage.getItem("USERINFO")
-  if (!info && to['name'] !== 'Home' && to['name'] !== 'Login') {
-    next({
-      name: 'Home'
-    })
-  } else {
-    next();
-  }
-});
+// router.beforeEach((to, from, next) => {
+//   var info = sessionStorage.getItem("USERINFO")
+//   // if (!info && to['name'] !== 'Home' && to['name'] !== 'Login') {
+//   //   next({
+//   //     name: 'Home'
+//   //   })
+//   // } else {
+//   //   next();
+//   // }
+// });
 
 export default router;
