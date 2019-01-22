@@ -291,7 +291,7 @@ export default {
     mounted(){
       let shop_id = this.$route.query.shop_id;
       console.log("shop_id",shop_id);
-      var mySwiper = new Swiper('.swiper-container', {
+      let mySwiper = new Swiper('.swiper-container', {
         autoplay:false,
         loop:false,
         height:window.innerHeight,
