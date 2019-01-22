@@ -11,7 +11,7 @@
             <div class="line"></div>
             <div class="all">
               <p class="p-text">年度总营业额</p>
-              <h2>{{total_payment}} <span>元</span></h2>
+              <h2 class="fadeInDown">{{total_payment}} <span>元</span></h2>
             </div>
             <div class="all">
               <p class="ptext">交易订单平均金额：<span class="text-red">{{dataList.per_received}}</span>元</p>
@@ -20,7 +20,7 @@
               2018年,{{dataList.store_name}}平均每单能收款{{dataList.per_received}}元，总收款{{dataList.total_payment}}元，战胜了{{dataList.city}}市{{defeat}}%的人，钱赚的盆满钵满
             </div>
             <div class="line"></div>
-            <div class="all-info">
+            <div class="all-info lightSpeedIn">
               伟大的成绩和辛勤劳动是成正比例的，有一分劳动就有一分收获
             </div>
           </div>
@@ -119,11 +119,13 @@
 <script>
 import Swiper from 'swiper';
 import {request,Modules} from '../utils/HttpRequest/request';
+import { Loading } from 'vux'
 import 'swiper/dist/css/swiper.min.css';
 import numeral from 'numeral';
 import moment from 'moment';
 
 export default {
+    components: {Loading},
     data () {
         return {
             shop_id:0,
@@ -139,6 +141,7 @@ export default {
     },
     methods: {
         getData (shop_id) {
+          this.$vux.loading.show({text: '加载中'});
           let stringjson = "store_name,total_payment,total_payment_Q1,total_payment_Q2,total_payment_Q3,total_payment_Q4,per_received,max_order,max_order_date,alipay,cash,wechat,alipay_rate,cash_rate,wechat_rate,late_deal_time,first_deal_time,profit,sale_rank,defeat,goods_count_barcode,goods_count_name,goods_amount_barcode,goods_amount_name,city,district,total_order";
           let params={
             "query_type": "get_year_report_by_storeid",
@@ -155,6 +158,7 @@ export default {
               }
             }
           }).then(res =>{
+            this.$vux.loading.hide();
             console.log(res);
             let data = JSON.parse(res.data);
             this.dataList = data[0];
@@ -168,9 +172,9 @@ export default {
             this.alipay_rate = this.getPercent(dataNume.alipay_rate);
             this.cash_rate = this.getPercent(dataNume.cash_rate);
             this.wechat_rate = this.getPercent(dataNume.wechat_rate);
-            this.drawLine();
-            this.drawPie();
+            
           }).catch(err => {
+            this.$vux.loading.hide();
             console.log(err);
           })
         },
@@ -197,7 +201,13 @@ export default {
                 }
               }
             },
-            yAxis: {},
+            yAxis: {
+              axisLabel:{
+                textStyle: {
+                    color: '#a3abb4'
+                }
+              }
+            },
             grid:{
               left: '15%',   //距离左边的距离
               right: '8%', //距离右边的距离
@@ -289,13 +299,24 @@ export default {
         }
     },
     mounted(){
+      let _this = this;
       let shop_id = this.$route.query.shop_id;
       console.log("shop_id",shop_id);
       let mySwiper = new Swiper('.swiper-container', {
         autoplay:false,
         loop:false,
         height:window.innerHeight,
-        direction : 'vertical'
+        direction : 'vertical',
+        on: {
+          slideChange: function () {
+            if(this.activeIndex === 1){
+              _this.drawLine();
+            }
+            if(this.activeIndex === 2) {
+              _this.drawPie();
+            }
+          },
+        }
       })
       this.getData(shop_id);
     },
@@ -502,6 +523,7 @@ export default {
         .chart{
           width: 100%;
           background-color: #fff;
+          padding-top: .5rem;
           margin: 0 auto;
           height: 38vh;
           border-left: 2px solid #76b1fe;
@@ -528,11 +550,13 @@ export default {
             font-size: 1.6rem;
             font-weight: 500;
             display: flex;
-            align-items: flex-end;
+            align-items: center;
           }
           span{
-            font-size: .8rem;
+            font-size: .7rem;
             color: #666;
+            display: inline-block;
+            margin-left: .2rem;
           }
         }
       }
@@ -795,41 +819,19 @@ export default {
       }
 
     }
-  }
-@-moz-keyframes bounce-In {
-    0% {
-      opacity: .5;
-    -webkit-transform: translateY(-.5rem);
-            transform: translateY(-.5rem);
-    }
-    100% {
-      opacity: 1;
-    -webkit-transform: translateY(0);
-            transform: translateY(0);
-    }
-  }
-@-o-keyframes bounce-In {
-    0% {
-      opacity: .5;
-    -webkit-transform: translateY(-.5rem);
-            transform: translateY(-.5rem);
-    }
-    100% {
-      opacity: 1;
-    -webkit-transform: translateY(0);
-            transform: translateY(0);
+    .swiper-slide-active{
+      .info{
+        p{
+          animation: bounceInRight 1.5s ease;
+        }
+      }
+      .fadeInDown{
+        animation: fadeInDown 1.5s ease;
+      }
+      .lightSpeedIn{
+         animation: lightSpeedIn 1.5s ease;
+      }
     }
   }
-@keyframes bounce-In {
-    0% {
-      opacity: .5;
-    -webkit-transform: translateY(-.5rem);
-            transform: translateY(-.5rem);
-    }
-    100% {
-      opacity: 1;
-    -webkit-transform: translateY(0);
-            transform: translateY(0);
-    }
-  }
+
 </style> 
