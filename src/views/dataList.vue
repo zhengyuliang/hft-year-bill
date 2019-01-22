@@ -109,7 +109,7 @@
         <div class="swiper-slide bg-4">
           <div class="bg-top"></div>
           <p>您最早<span class="bg-blue">{{dataList.first_deal_time}}</span>开始收银，最晚到<span class="bg-red">{{dataList.late_deal_time}}</span>还在工作，真是起的比鸡还早，睡的比狗还晚，勤奋的你，一定可以实现2019年的小愿望！</p>
-          <button class="btn"></button>
+          <button class="btn" @click="openDownload"></button>
         </div>
       </div>
     </div>
@@ -126,6 +126,7 @@ import moment from 'moment';
 export default {
     data () {
         return {
+            shop_id:0,
             dataList:'',
             total_payment:'', //总收款
             defeat:0, //战胜百分比
@@ -137,11 +138,11 @@ export default {
         }
     },
     methods: {
-        getData () {
+        getData (shop_id) {
           let stringjson = "store_name,total_payment,total_payment_Q1,total_payment_Q2,total_payment_Q3,total_payment_Q4,per_received,max_order,max_order_date,alipay,cash,wechat,alipay_rate,cash_rate,wechat_rate,late_deal_time,first_deal_time,profit,sale_rank,defeat,goods_count_barcode,goods_count_name,goods_amount_barcode,goods_amount_name,city,district,total_order";
           let params={
             "query_type": "get_year_report_by_storeid",
-            "store_id": 121,
+            "store_id": shop_id,
             "projection_expression": stringjson
           };
           request({
@@ -276,16 +277,24 @@ export default {
           let percent = +str;
           let result = (percent * 100).toFixed(2);
           return result;
+        },
+        openDownload() {
+          this.$router.push({ path: "/download" });
         }
     },
     mounted(){
-        var mySwiper = new Swiper('.swiper-container', {
-          autoplay:false,
-          loop:false,
-          height:window.innerHeight,
-          direction : 'vertical'
-        })
-        this.getData();
+      let shop_id = this.$route.query.shop_id;
+      console.log("shop_id",shop_id);
+      var mySwiper = new Swiper('.swiper-container', {
+        autoplay:false,
+        loop:false,
+        height:window.innerHeight,
+        direction : 'vertical'
+      })
+      this.getData(shop_id);
+    },
+    created(){
+
     }
 }
 </script>
