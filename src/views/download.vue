@@ -46,9 +46,6 @@ export default {
         right: 0;
         bottom: 0;
         position: relative;
-        // background-position: center;
-        // background-repeat: no-repeat;
-        // background-size: contain;
         .imgBG{
             position: absolute;
             z-index: 2;
@@ -118,6 +115,7 @@ export default {
             bottom: .8rem;
             width: 100%;
             text-align: center;
+            font-size: .9rem;
         }
         .img{
             position: absolute;
