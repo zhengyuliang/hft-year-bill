@@ -300,10 +300,10 @@ export default {
         // 用户行为记录内容
         recordUserAction(shop_id){
           let params={
-            user_id: "string",
-            activity_id: 1,
-            operation_type:1,
-            app_name:"pos-app"
+            user_id: shop_id + '',
+            activity_id: 2,
+            operation_type:4,
+            app_name:"hzf-gzh"
           };
           console.log(params)
           console.log(Modules.ACTIONDATA);
@@ -326,7 +326,6 @@ export default {
     mounted(){
       let _this = this;
       let shop_id = this.$route.query.shop_id;
-      console.log("shop_id",shop_id);
       let mySwiper = new Swiper('.swiper-container', {
         autoplay:false,
         loop:false,
