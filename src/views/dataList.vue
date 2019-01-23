@@ -296,6 +296,31 @@ export default {
         },
         openDownload() {
           this.$router.push({ path: "/download" });
+        },
+        // 用户行为记录内容
+        recordUserAction(shop_id){
+          let params={
+            user_id: "string",
+            activity_id: 1,
+            operation_type:1,
+            app_name:"pos-app"
+          };
+          console.log(params)
+          console.log(Modules.ACTIONDATA);
+          request({
+            params:params,
+            url: Modules.ACTIONDATA,
+            config:{
+              headers: {
+                "apikey": "43aae2d0-625e-11e7-901c-a1891b15059c",
+              }
+            }
+          }).then(res =>{
+            console.log("用户行为>>>>>",res);
+            
+          }).catch(err => {
+            console.log(err);
+          })
         }
     },
     mounted(){
@@ -319,6 +344,7 @@ export default {
         }
       })
       this.getData(shop_id);
+      this.recordUserAction(shop_id);
     },
     created(){
 

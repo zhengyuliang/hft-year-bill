@@ -4,6 +4,7 @@ import axios from 'axios';
 
 const CAOYU = 'caoyu';
 const LIUYI = 'liuyi';
+const ZHENGYULIANG = 'zhengyuliang';
 // const XIAOCONG = 'xiaocong';
 // 超时时间 单位: ms
 const timeoutCounter = 100000;
@@ -12,7 +13,8 @@ const timeoutCounter = 100000;
 const Modules = {
     DATA: CAOYU + '/proc/report/year-report/2018', //账单数据信息
     LOGIN: LIUYI + '/v1/operation/h5/login',//登录
-    SCODE: LIUYI + '/v1/operation/h5/sendsms'//验证码
+    SCODE: LIUYI + '/v1/operation/h5/sendsms',//验证码
+    ACTIONDATA: ZHENGYULIANG + '/v1/stage/user/records'
 }
 /**
  * method: 'get' or 'post' , 'post'是默认值

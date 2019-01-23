@@ -15,7 +15,11 @@ module.exports = {
             '/liuyi':{
                 target: 'http://40.125.170.251:5006',
                 pathRewrite: {'^/liuyi' : ''}
-            }
+            },
+            '/zhengyuliang': {
+                target: 'http://test-swagger.esmart365.com:3000',
+                pathRewrite: {'^/zhengyuliang' : ''}
+            },
         }
     }
 }
