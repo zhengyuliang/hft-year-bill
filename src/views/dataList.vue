@@ -17,7 +17,7 @@
               <p class="ptext">交易订单平均金额：<span class="text-red">{{dataList.per_received}}</span>元</p>
             </div>
             <div class="all-text">
-              2018年,{{dataList.store_name}}平均每单能收款{{dataList.per_received}}元，总收款{{dataList.total_payment}}元，战胜了{{dataList.city}}市{{defeat}}%的人，钱赚的盆满钵满
+              2018年,{{dataList.store_name}}平均每单能收款{{dataList.per_received}}元，总收款{{dataList.total_payment}}元，战胜了{{dataList.city}}{{defeat}}%的人，钱赚的盆满钵满
             </div>
             <div class="line"></div>
             <div class="all-info lightSpeedIn">
@@ -186,7 +186,7 @@ export default {
           // 绘制图表
           myChart.setOption({
             title: { 
-              text: "订单交易金额平均分布区间",
+              text: "订单交易金额",
               textStyle:{
                 color:"#666",
                 fontSize:16
