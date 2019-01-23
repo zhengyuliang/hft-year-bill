@@ -25,10 +25,10 @@
           <!-- <div class="forget-p">忘记密码？</div> -->
         </div>
         <div class="login-s">
-          <p class="save-p">
-            <!-- <span class="ioc-g"></span>
-            <span class="c-save">记住密码</span>-->
-          </p>
+          <!-- <p class="save-p">
+            <span class="ioc-g"></span>
+            <span class="c-save">记住密码</span>
+          </p> -->
           <p>
             <x-button class="sumbit-btn" @click.native="login">{{loginc}}</x-button>
           </p>
@@ -213,7 +213,7 @@
     height: 100vh;
     box-sizing: border-box;
     .sales-bg {
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
       right: 0;
@@ -249,7 +249,7 @@
       position: absolute;
       left: 50%;
       margin-left: -44%;
-      top: 12vh;
+      top: 22vh;
       z-index: 100;
     }
 
@@ -333,11 +333,12 @@
       display: block;
       width: 40vw;
       height: 12vw;
-      background: linear-gradient(to right, rgb(22, 221, 219), rgb(49, 176, 224));
+      background: linear-gradient(to right,rgb(49, 176, 224) ,rgb(22, 221, 219));
       border-radius: 5px;
       color: #fff;
       font-size: 1rem;
       line-height: 12vw;
+          border: 1px solid rgb(255, 255, 255);
       // box-shadow: 4px 4px 10px rgba(22, 221, 219, 0.3);
     }
 
@@ -349,7 +350,7 @@
       margin-top: 5.6vw;
       color: #fff;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
     }
 
@@ -359,7 +360,7 @@
       text-align: center;
       font-size: 1rem;
       position: absolute;
-      bottom: 20px;
+      top: 20px;
     }
   }
 </style>
